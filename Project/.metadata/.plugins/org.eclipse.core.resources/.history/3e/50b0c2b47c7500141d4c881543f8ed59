@@ -1,0 +1,12 @@
+
+public class auto extends JFrame{
+	public static void main(String args[]){
+		JFrame frame = new account();
+		frame.setSize(400,200);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("Auto");
+		JPanel paneel = new Paneel();
+		frame.setContentPane(paneel); //het maken van de inhoud
+		frame.setVisible(true);
+	}
+}

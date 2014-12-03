@@ -1,0 +1,10 @@
+import javax.swing.JFrame;
+
+public class database extends JFrame{
+	
+	public database(){
+		initUI();
+	}
+	
+	
+}

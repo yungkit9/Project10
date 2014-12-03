@@ -1,0 +1,19 @@
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+public class auto extends JFrame{
+	public static void main(String args[]){
+		JFrame frame = new auto();
+		frame.setSize(400,200);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setTitle("Auto");
+		JPanel paneel = new Paneel();
+		frame.setContentPane(paneel); //het maken van de inhoud
+		frame.setVisible(true);
+	}
+}
+
+class Paneel extends JPanel{
+	
+}
