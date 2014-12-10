@@ -1,11 +1,19 @@
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 
 
 
 public class auto extends JMenuBar{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String[] Auto = new String[]{"Verhuurde Auto's","Beschikbare Auto's", "informatie Auto's"};
 	String[] Klanten = new String[]{"klanten"};
 	String[] Huuroverzicht = new String[]{"Huuroverzicht"};
@@ -52,4 +60,6 @@ public class auto extends JMenuBar{
 		frame.setVisible(true);
 	}
 }
+
+
 	

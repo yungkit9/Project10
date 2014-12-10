@@ -1,0 +1,56 @@
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.sql.DataSource;
+import oracle.jdbc.pool.OracleDataSource;
+//import org.sqlite.JDBC;
+
+
+
+public class MijnConnectie {
+	//static String database = "jdbc:sqlite:database.sqlite";
+	static Connection conn;
+
+	public static Connection verbindmetDB() { 
+	
+		try {
+						
+			DataSource ds = new OracleDataSource();
+			((OracleDataSource)ds).setURL("jdbc:oracle:thin:database1.mdb");
+			
+			// maak verbinding
+			  conn = ds.getConnection("",""); 
+			
+			
+			conn.setAutoCommit(false);
+		
+						
+			return conn;
+			
+		} 
+		
+		
+		catch(SQLException sqle) {
+			// kan niet verbinden, geef error.
+			System.err.println("Fout bij het inloggen: \n" + sqle.getMessage());
+			return null;			
+		}
+	}
+	
+	public static boolean executeQuery(String query) {
+		try {
+			Statement statement = conn.createStatement();
+			statement.executeUpdate(query);
+			return true;
+		} catch (SQLException e) {
+			System.err.println("Fout bij het uitvoeren van Query: " + e.getMessage());
+			return false;
+		}
+	}
+	
+	
+	
+	
+	
+}
+	

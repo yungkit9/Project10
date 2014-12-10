@@ -1,0 +1,55 @@
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.BoxLayout;
+import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
+import javax.swing.JButton;
+import java.awt.GridLayout;
+import javax.swing.SpringLayout;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import javax.swing.JTable;
+
+
+public class Scherm1 extends JFrame {
+	static public JTable table;
+
+	/**
+	 * Start de applicatie.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Scherm1 frame = new Scherm1();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Maak het frame.
+	 */
+	public Scherm1() {
+		setTitle("Database Connector 2013");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 596, 424);
+		SpringLayout springLayout = new SpringLayout();
+		getContentPane().setLayout(springLayout);
+		
+		table = new JTable();
+		springLayout.putConstraint(SpringLayout.NORTH, table, 10, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, table, 10, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, table, -10, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, table, -10, SpringLayout.EAST, getContentPane());
+		getContentPane().add(table);
+	}
+}

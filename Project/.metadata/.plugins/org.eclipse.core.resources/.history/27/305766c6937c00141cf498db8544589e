@@ -1,0 +1,41 @@
+/*
+ * Hoofdscherm
+ * versie 2013-1
+ */
+
+
+import java.util.Arrays;
+import java.util.Vector;
+
+import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
+
+
+public class Hoofdscherm extends JFrame {
+	
+	
+	// defineer alle variabelen
+	static Vector tabledata;
+	static DefaultTableModel tableMod;
+	
+	public static void main(String[] args) {
+		
+		// verbind met database
+		DBEngine.ConnectToDB();
+		
+		// voer query uit en haal de ResultSet (Vector) op.
+		// hier staat dus de sql instructie
+		tabledata = DBEngine.getResultSet("SELECT * FROM Gebruikers");
+		
+		// scherm 1 inladen
+		auto frame = new auto();
+		
+		// laat het scherm zien
+		frame.setVisible(true);
+	}
+	
+	
+	
+	
+
+}

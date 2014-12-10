@@ -1,0 +1,87 @@
+/*
+ * Database Connector
+ * versie 2013-1
+ */
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Vector;
+
+public class DBEngine {
+	
+	// defineer alle variabelen
+	static String database = "jdbc:odbc:autoverhuur";
+	static Connection con;
+	static Vector columnNames;
+	static Vector data;
+	static Vector row;
+	static Vector returnedResultSet;
+	
+	public static Connection ConnectToDB() {
+		try {
+			// laad driver in
+			Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+			// maak verbinding
+			con = DriverManager.getConnection(database,"","");
+						
+			return con;
+			
+		} catch(ClassNotFoundException e) {
+			// kan de database class niet vinden, geef error.
+			System.err.println("Kan de database connector niet vinden.");
+			return null;			
+			
+		} catch(SQLException e) {
+			// kan niet verbinden, geef error.
+			System.err.println("Kan niet verbinden met de database:\n" + e.getMessage());
+			return null;			
+		}
+	}
+	
+	
+	
+	public static Vector getResultSet(String query) {
+		try {
+			
+			// voer query uit en bouw ResultSet
+	    	Statement statement = con.createStatement();
+	        ResultSet rs = statement.executeQuery(query);
+	        
+	        // vraag colomnamen op
+	        ResultSetMetaData rsmd = rs.getMetaData();
+	        int columnCount = rsmd.getColumnCount();
+	        
+	        // maak vector voor de data uit de database
+	        data = new Vector();
+	       
+	        
+	        // haal ResultSet op
+	        while (rs.next()) {
+	        	
+	        	// maak vector voor rows
+	        	row = new Vector(columnCount);
+	        	
+	        	// maak lus waarin alle data uit de database wordt gehaald en in de vector wordt gezet
+	            for (int i = 1; i <= columnCount; i++) {
+	            	row.addElement(rs.getString(i));
+	            }
+	            
+	            // voeg de row-vector toe aan de algemene vector
+	            data.addElement(row);
+	        }
+	        
+	        
+	    } catch (SQLException e ) {
+	    	// kan de query niet uitvoeren, geef error en sluit af.
+	    	System.err.println("Kan de query niet uitvoeren:\n" + e.getMessage());
+	    	System.exit(0);
+	    }
+		
+		// retouneer vector met alle rows
+		return data;
+	}
+}

@@ -1,0 +1,20 @@
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.sql.DataSource;
+import oracle.jdbc.pool.OracleDataSource;
+
+public class DBConnectie{
+	public static Connection connect(){
+		try {
+		
+				DataSource ds=new OracleDataSource();
+				( (OracleDataSource)ds).setURL("jdbc:odbc:Pvb10");
+				Connection conn =ds.getConnection("",""); //naam en ww
+				conn.setAutoCommit (false);
+				return conn;
+		} catch (SQLException sqle) {
+			System.out.println("Fout bij het inloggen: "+ sqle.getMessage());
+			return null;
+		}
+	}
+}

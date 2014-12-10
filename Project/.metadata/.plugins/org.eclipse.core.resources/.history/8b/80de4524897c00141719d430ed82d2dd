@@ -1,0 +1,37 @@
+import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import javax.sql.DataSource;
+import oracle.jdbc.pool.OracleDataSource;
+//import org.sqlite.JDBC;
+
+
+
+public class MijnConnectie {
+	//static String database = "jdbc:sqlite:database.sqlite";
+	static Connection conn;
+
+	public static Connection ConnectToDB() {
+		   try {
+		    // laad driver in
+		    Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
+		    // maak verbinding
+		    conn = DriverManager.getConnection(database,"","");
+		    System.out.println("Connectie succesvol");
+		    return conn;
+		    
+		   } catch(ClassNotFoundException e) {
+		    // kan de database class niet vinden, geef error.
+		    System.err.println("Kan de database connector niet vinden.\n" + e.getMessage());
+		    return null;   
+		    
+		   } catch(SQLException e) {
+		    // kan niet verbinden, geef error.
+		    System.err.println("Kan niet verbinden met de database:\n" + e.getMessage());
+		    return null;   
+		   }
+		   
+		  }
+}
+	
+	
